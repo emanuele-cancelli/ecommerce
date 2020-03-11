@@ -1,0 +1,59 @@
+<div *ngIf="panelEnabled">
+  Codice <input type="text" [(ngModel)]="codice" [disabled]="panelInputDisabled">&nbsp;
+  Descrizione <input type="text" [(ngModel)]="descrizione"[disabled]="panelInputDisabled">&nbsp;
+  <br>
+  Prezzo <input type="text" [(ngModel)]="prezzo" [disabled]="panelInputDisabled">
+  <br>
+  <br>
+  <button *ngIf="confermaEnabled" (click)="conferma()" >Conferma</button>&nbsp;
+  <button  *ngIf="annullaEnabled" (click)="annulla()">Annulla</button>&nbsp;
+  <button *ngIf="creaEnabled" (click)="crea()" >Crea</button>&nbsp;
+  <button *ngIf="modificaEnabled" (click)="modifica()" >Modifica</button>&nbsp;
+  <button *ngIf="rimuoviEnabled" (click)="rimuovi()" >Rimuovi</button>
+</div>
+<br>
+<hr>
+<br>
+<div *ngIf="searchPanelEnabled">
+  <input type="text" [(ngModel)]="searchKey" [disabled]="cercaInputDisabled">&nbsp;
+  <button (click)="cerca()" *ngIf="cercaEnabled">Cerca</button>
+
+</div>
+<br>
+  <button (click)="aggiungi()" *ngIf="aggiungiEnabled">Aggiungi</button>&nbsp;
+
+<br>
+<hr>
+<br>
+<div  *ngIf="resultsEnabled && spedizioni.length > 0">
+<table>
+  <tr>
+    <th>Codice Spedizione</th>
+    <th>Descrizione</th>
+    <th>Prezzo</th>
+    <th>View</th>
+    <th>Edit</th>
+    <th>Delete</th>
+  </tr>
+  <tr *ngFor="let s of spedizioni">
+      <td>{{s.codice}}</td>
+      <td>{{s.descrizione}}</td>
+      <td> {{s.prezzo}}</td>
+      <td>
+        <button (click)="view(s)" *ngIf="viewEnabled">View</button>
+      </td>
+      <td>
+        <button (click)="edit(s)" *ngIf="editEnabled">Edit</button>
+      </td>
+      <td>
+        <button (click)="delete(s)" *ngIf="deleteEnabled">Delete</button>
+      </td>
+  </tr>
+</table>
+<button (click)="this.cercaSpedizione(this.searchKeyPrecedente, 0)" *ngIf="editEnabled" [disabled]=backDisabled>Prima Pagina</button>&nbsp;
+<button (click)="this.cercaSpedizione(this.searchKeyPrecedente, this.pagina - 1)" *ngIf="editEnabled" [disabled]=backDisabled>Pagina Precedente</button>&nbsp;
+Pagina {{pagina+1}} &nbsp;
+<button (click)="this.cercaSpedizione(this.searchKeyPrecedente, this.pagina + 1)" *ngIf="editEnabled" [disabled]=forwardDisabled>Pagina Successiva</button>&nbsp;
+<button (click)="this.cercaSpedizione(this.searchKeyPrecedente, -1)" *ngIf="editEnabled" [disabled]=forwardDisabled>Ultima Pagina</button>
+</div>
+

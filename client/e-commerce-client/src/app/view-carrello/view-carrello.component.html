@@ -1,0 +1,17 @@
+<h2>Il tuo ordine</h2>
+<p>Ordine #{{nOrdine}} del {{nData}}. Totale: € {{nTotale}}</p>
+<br />
+<table>
+  <tr>
+    <th>Quantità</th>
+    <th>Descrizione</th>
+    <th>Prezzo</th>
+  </tr>
+  <tr *ngFor="let r of righeCarrello">
+    <td>{{ r.qta }}</td>
+    <td>{{ r.prodotto.descrizione }}</td>
+    <td>{{ r.prodotto.prezzo }}</td>
+  </tr>
+</table>
+<button (click)="checkToken()">Aggiorna</button>
+<button routerLink="/login">Paga</button>

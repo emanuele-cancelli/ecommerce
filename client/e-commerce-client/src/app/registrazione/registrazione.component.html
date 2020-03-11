@@ -1,0 +1,25 @@
+<div class="contenitore">
+  <label for="username">Username</label>
+  <input id="username" class="input" [(ngModel)]="username">
+
+  <br><br>
+  <label for="password">Password</label>
+  <input id="password" class="input" [(ngModel)]="password">
+
+  <br><br>
+  <label for="conferma-password">Conferma password</label>
+  <input id="conferma-password" class=" input" [(ngModel)]="confermapassword">
+
+  <br><br>
+  <label for="email">Email</label>
+  <input id="email" class="input" [(ngModel)]="email">
+
+  <br><br>
+  <div *ngIf="messaggioErrore">{{ messaggioErrore }}</div>
+  <br>
+  <button class="button" (click)="registrami()">Conferma</button>
+
+  &nbsp;
+  <button class="button" (click)="annulla()">Annulla</button>
+
+</div>

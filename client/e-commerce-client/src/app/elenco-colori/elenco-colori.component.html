@@ -1,0 +1,30 @@
+<div>
+    <input type = 'text' [(ngModel)] = 'searchKey'>&nbsp;
+    <button  (click) = 'eseguiRicerca(searchKey, 0)'>Cerca</button>
+    <a routerLink = '/home-pubblica'>
+    <button>Home</button>
+    </a>
+</div>
+<div *ngIf = 'showResults || colori && colori.length > 0'>
+  <table>
+    <tr>
+      <th>Codice</th>
+      <th>Descrizione</th>
+    </tr>
+    <tr *ngFor = "let c of colori">
+      <td>{{c.codice}}</td>
+      <td>{{c.descrizione}}</td>
+    </tr>
+  </table>
+  <button (click)="this.eseguiRicerca(this.searchKeyPrecedente, 0)" [disabled]=backDisabled>
+    << </button> &nbsp;
+      <button (click)="this.eseguiRicerca(this.searchKeyPrecedente, this.pagina - 1)" [disabled]=backDisabled>
+        < </button> &nbsp;
+          {{pagina+1}} &nbsp;
+          <button (click)="this.eseguiRicerca(this.searchKeyPrecedente, this.pagina + 1)" [disabled]=forwardDisabled>
+            >
+          </button> &nbsp;
+          <button (click)="this.eseguiRicerca(this.searchKeyPrecedente, -1)" [disabled]=forwardDisabled>
+            >>
+          </button>
+</div>

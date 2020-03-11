@@ -1,0 +1,63 @@
+<div *ngIf="showPanel">
+  <input type="text" placeholder = "Codice" [(ngModel)]="codice" [disabled]="inputDisabled">&nbsp;
+  <input type="text" placeholder = "Descrizione" [(ngModel)]="descrizione" [disabled]="inputDisabled">&nbsp;
+  <input type="number" placeholder = "Prezzo" [(ngModel)]="prezzo" [disabled]="inputDisabled">
+  <br>
+  <br>
+  <button *ngIf="showConferma" (click)="conferma()">Conferma</button>&nbsp;
+  <button *ngIf="showAnnulla" (click)="annulla()">Annulla</button>&nbsp;
+  <button *ngIf="showCrea" (click)="crea()">Crea</button>&nbsp;
+  <button *ngIf="showModifica" (click)="modifica(null)">Modifica</button>&nbsp;
+  <button *ngIf="showRimuovi" (click)="rimuovi(null)">Rimuovi</button>
+</div>
+<br>
+<div *ngIf="showSearchPanel">
+  <input  type="text" [(ngModel)]="searchKey">&nbsp;
+  <button (click)="cerca()">Cerca</button>&nbsp;
+  <button (click)="crea()">Aggiungi</button>
+</div>
+
+<div *ngIf="showResults && prodotti && prodotti.length > 0">
+  <br>
+  <table>
+    <tr>
+    <th>Codice</th>
+    <th>Descrizione</th>
+    <th>Prezzo</th>
+    <th>View</th>
+    <th>Edit</th>
+    <th>Delete</th>
+    <th>Taglie</th>
+    </tr>
+    <tr *ngFor="let p of prodotti">
+      <td >{{p.codice}}</td>
+      <td>{{p.descrizione}}</td>
+      <td>{{p.prezzo}}</td>
+      <td>
+        <button (click)="view(p)">View</button>
+      </td>
+      <td>
+        <button (click)="modifica(p)">Edit</button>
+      </td>
+      <td>
+        <button (click)="rimuovi(p)">Delete</button>
+      </td>
+      <td>
+        <button (click)="rigaSelezionata(p)" routerLink="/prodotti-taglie">Taglie</button>
+      </td>
+      </tr>
+  </table>
+  <button (click) = "this.eseguiRicerca(this.searchKeyPrecedente, 0)" [disabled]=backDisabled>
+    <<
+  </button> &nbsp;
+  <button (click) = "this.eseguiRicerca(this.searchKeyPrecedente, this.pagina - 1)" [disabled]=backDisabled>
+    <
+  </button> &nbsp;
+  {{pagina+1}} &nbsp;
+  <button (click) = "this.eseguiRicerca(this.searchKeyPrecedente, this.pagina + 1)" [disabled]=forwardDisabled>
+    >
+  </button> &nbsp;
+  <button (click) = "this.eseguiRicerca(this.searchKeyPrecedente, -1)" [disabled]=forwardDisabled>
+    >>
+  </button>
+</div>

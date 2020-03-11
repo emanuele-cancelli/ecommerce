@@ -1,0 +1,37 @@
+<div>
+  <label>
+    <input type = "number" [(ngModel)] = "numeroOrdine" placeholder="Numero ordine">&nbsp;
+    Data <input type = "date" [(ngModel)] = "data">&nbsp;
+    <select [(ngModel)] = "stato">&nbsp;
+      <option>Carrello</option>
+      <option>In checkout</option>
+      <option>Pagato</option>
+      <option>Spedito</option>
+    </select> &nbsp;
+    <button type="button" (click) = "searchOrdine(numeroOrdine, data, stato, 0)"> Cerca </button>
+  </label>
+</div>
+<div *ngIf = showResults>
+  <table>
+    <th>Data</th>
+    <th>Numero Ordine</th>
+    <th>Stato</th>
+    <tr *ngFor="let o of ordini">
+      <td>{{o.data}}</td>
+      <td>{{o.numero}}</td>
+      <td>{{o.stato}}</td>
+    </tr>
+  </table>
+  <button (click) = "searchOrdine(numeroPrecedente, dataPrecedente, statoPrecedente, 0)" [disabled]=backDisabled>
+    <<
+  </button> &nbsp;
+  <button (click) = "searchOrdine(numeroPrecedente, dataPrecedente, statoPrecedente, this.pagina -1)" [disabled]=backDisabled>
+    <
+  </button> &nbsp;
+  <button (click) = "searchOrdine(numeroPrecedente, dataPrecedente, statoPrecedente, this.pagina +1)" [disabled]=forwardDisabled>
+    >
+  </button> &nbsp;
+  <button (click) = "searchOrdine(numeroPrecedente, dataPrecedente, statoPrecedente, -1)" [disabled]=forwardDisabled>
+    >>
+  </button> &nbsp;
+</div>

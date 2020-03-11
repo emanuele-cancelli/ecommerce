@@ -1,0 +1,20 @@
+<div class="master">
+    <div class="log">
+        <h1>Login</h1>
+    </div>
+            <p>
+                <label>Username</label> &nbsp;
+                <input type="text" [(ngModel)]="username" class="username" placeholder=" Username" />
+            </p>
+            <p>
+                <label> Password </label> &nbsp;
+                <input type="password" [(ngModel)]="password" class="password" placeholder=" Password" />
+            </p>
+            <button (click)="login()">Login</button>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button  [routerLink]="['/password-dimenticata']">Password dimenticata</button>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button [routerLink]="['/registrazione']">Registrazione</button>
+
+    </div>
+

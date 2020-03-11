@@ -1,0 +1,74 @@
+<button value="home" routerLink="/home-riservata">&lsaquo; Indietro</button>
+<hr>
+<div class="panel" *ngIf="showPanel">
+  <label for="codice">Codice: </label>
+  <input id="codice" type="text" [(ngModel)]="codice" name="codice" disabled="{{ inputNotEditable }}" />
+  <label for="descrizione"> Descrizione: </label>
+  <input id="descrizione" type="text" [(ngModel)]="descrizione" name="descrizione" disabled="{{ inputNotEditable }}" />
+  <span *ngIf="showConfermaAnnulla">
+    <button (click)="confermaCheckState(state)">Conferma</button>
+    <button (click)="annullaCheckState(state)">Annulla</button>
+  </span>
+  <span *ngIf="showCUD">
+    <button *ngIf="showRisultati" (click)="creaCheckState(state)">Crea</button>
+    <button *ngIf="showRisultati" (click)="modificaCheckState(state)">
+      Modifica
+    </button>
+    <button *ngIf="showRisultati" (click)="cancellaCheckState(state)">
+      Rimuovi
+    </button>
+  </span>
+</div>
+
+<br />
+<div class="search" *ngIf="showCerca">
+  <input type="text" [(ngModel)]="ricerca" placeholder="Cerca colore" />
+  <button (click)="cercaCheckState(state)">Cerca</button>
+  <span class="add" *ngIf="showAggiungi">
+    <button (click)="aggiungiState()">Aggiungi</button>
+  </span>
+</div>
+
+<br />
+<p>{{ msg }}</p>
+<br />
+<div class="results" *ngIf="showRisultati">
+  <table *ngIf="result.length != 0">
+    <tr>
+      <th>
+        Codice
+      </th>
+      <th>
+        Descrizione
+      </th>
+    </tr>
+    <tr *ngFor="let r of result">
+      <td>{{ r.codice }}</td>
+      <td>{{ r.descrizione }}</td>
+      <td><button (click)="visualizzaState(r)">Visualizza</button></td>
+      <td>
+        <button (click)="modificaInTableCheckState(state, r)">Modifica</button>
+      </td>
+      <td>
+        <button (click)="cancellaInTableCheckState(state, r)">Rimuovi</button>
+      </td>
+    </tr>
+  </table>
+
+
+  <div class="pagination">
+    <button (click)="cambiaPagina(0)">
+      &laquo;
+    </button>
+    <button (click)="cambiaPagina(pagina-1)">
+      &lsaquo;
+    </button>
+    {{pagina+1}}
+    <button (click)="cambiaPagina(pagina+1)">
+      &rsaquo;
+    </button>
+    <button (click)="cambiaPagina(-2)">
+      &raquo;
+    </button>
+  </div>
+</div>
